@@ -51,18 +51,7 @@ import { Componet, VM } from "cmpx";
                 model="{{JSON.stringify(this.model)}}"></textarea>
         </span>
     </div>
-</div>`,
-    style:`
-    .row {margin: 3px 3px;}
-    .text {
-        margin-right: 10px;
-        width: 120px;
-        text-align: right;
-        display: inline-block;
-        vertical-align: top;
-    }
-    .input {}
-`
+</div>`
 })
 export default class FormComponet extends Componet{
     model = {

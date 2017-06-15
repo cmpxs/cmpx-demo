@@ -1,3 +1,6 @@
+安装全局
+npm install -g typescript tsc typeings webpack
+
 安装
 npm install
 

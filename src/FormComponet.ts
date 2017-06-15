@@ -20,9 +20,22 @@ import { Componet, VM } from "cmpx";
         </span>
     </div>
     <div class="row">
-        <span class="text">checkbox value</span>
+        <span class="text">checkbox</span>
         <span class="input">
             <input type="checkbox" value="1" checked="{{#this.model.checked}}" />
+        </span>
+    </div>
+    <div class="row">
+        <span class="text">checkbox value</span>
+        <span class="input">
+            <input type="checkbox" value="1" model="{{#this.model.checkbox}}" />
+        </span>
+    </div>
+    <div class="row">
+        <span class="text">radio value</span>
+        <span class="input">
+            <input type="radio" value="1" name="radio1" model="{{#this.model.radio}}" />
+            <input type="radio" value="2" name="radio1" model="{{#this.model.radio}}" />
         </span>
     </div>
     <div class="row">
@@ -56,7 +69,9 @@ export default class FormComponet extends Componet{
         input:'',
         select:'1',
         checked:true,
-        textarea:''
+        textarea:'',
+        checkbox:'',
+        radio:'2'
     };
 
     constructor(){

@@ -4,6 +4,7 @@ import FormComponet from './FormComponet';
 
 @VM({
     name:'app',
+    include:[FormComponet],
     tmpl:`<div>
     <div>{{this.name}}</div>
     <formtest />
@@ -21,12 +22,10 @@ export default class AppComponet extends Componet{
     name = "app demo"
     list:Object[];
     num:number = 0;
-    form:FormComponet;
 
     constructor(){
         super();
         this.makeUserList(20);
-        this.form = new FormComponet();
     }
 
     makeUserList(num:number){

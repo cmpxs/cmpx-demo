@@ -1,44 +1,47 @@
 
 import { Componet, VM } from "cmpx";
 import FormComponet from './FormComponet';
+import ExpressionComponent from './ExpressionComponent';
 
 @VM({
     name:'app',
-    include:[FormComponet],
-    tmpl:`<div>
+    include:[FormComponet, ExpressionComponent],
+    tmpl:`<div class="app">
     <div>{{this.name}}</div>
-    <formtest />
-    <div>
-        <button click="{{@this.randNum()}}">刷新数组({{this.num}})</button>
+    <div class="head">
+        <a href="javascript:void(0)" click={{@this.tabs(0)}}>语句&表达式</a>
+        <a href="javascript:void(0)" click={{@this.tabs(1)}} >form</a>
     </div>
-    {{for item in this.list}}
-    <div>
-        {{$index}}: item({{item.id}})
+    <div class="content">
+    {{if this.index == 0}}
+        <expression />
+    {{else this.index == 1}}
+        <formtest />
+    {{/if}}
     </div>
-    {{/for}}
-</div>`
+</div>`,
+    style:`
+        .app .head {
+            margin: 5px 10px;
+            font-size: 18px;
+        }
+        .app .content {
+            border: solid 1px;
+            padding: 6px;
+        }
+    `
 })
 export default class AppComponet extends Componet{
     name = "app demo"
-    list:Object[];
-    num:number = 0;
 
     constructor(){
         super();
-        this.makeUserList(20);
     }
 
-    makeUserList(num:number){
-        let list = [];
-        for (var i=0;i<num;i++)
-            list.push({id:new Date().valueOf()+ ""+i});
-        this.list = list;
-        this.num = num;
-    }
-
-    randNum(){
-        let num = Math.round(1+ Math.random()*50);
-        this.makeUserList(num);
+    index:number = 0;
+    tabs(index:number){
+        this.index = index;
         this.$update();
     }
+
 }

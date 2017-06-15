@@ -69,7 +69,7 @@ export default class FormComponet extends Componet{
         input:'',
         select:'1',
         checked:true,
-        textarea:'',
+        textarea:'text ok',
         checkbox:'',
         radio:'2'
     };

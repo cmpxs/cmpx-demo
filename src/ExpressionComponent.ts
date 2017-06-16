@@ -26,7 +26,16 @@ import { Componet, VM } from 'cmpx';
     </div>
     <br />
 
-    <div>事件语句{{{: ': {{@ 执行表达式}}' }}}</div>
+    <div>读写语句{{{: ': {{# 属性}}' }}}</div>
+    <div>
+        <button click="{{@this.changeText()}}">刷新数据, 会变</button>
+    </div>
+    <div>
+    <input type="text" model={{# this.text}}>
+    </div>
+    <br />
+
+    <div>事件绑定语句{{{: ': {{@ 执行表达式}}' }}}</div>
     <div>
         <button click="{{@this.changeText(event);console.log(event);}}">点击刷新数据, 可以获取event内容</button>
     </div>

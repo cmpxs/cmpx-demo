@@ -45,10 +45,9 @@ import { Componet, VM, viewvar } from 'cmpx';
         </span>
     </div>
     <div>
-        <span class="text">foritem</span>
+        <span class="text">foritem ({{foritem.length}})</span>
         <span class="input">
-            {{console.log(foritem)}}
-            {{for item in this.divItems}}
+            {{for item in foritem}}
             <div>
                 {{: item.innerText}}
             </div>
@@ -81,10 +80,10 @@ export default class ViewvarComponent extends Componet{
     randNum(){
         let num = Math.round(1+ Math.random()*5);
         this.makeUserList(num);
+        console.time('foritem')
         //生成新数组foritem
         this.$update();
-        //再次将divItems显示到view
-        this.$update();
+        console.timeEnd('foritem')
     }
 
     @viewvar('foritem')

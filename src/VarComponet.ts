@@ -78,7 +78,7 @@ export default class ViewvarComponent extends Componet{
     }
 
     randNum(){
-        let num = Math.round(1+ Math.random()*5);
+        let num = Math.round(1+ Math.random()*100);
         this.makeUserList(num);
         console.time('foritem')
         //生成新数组foritem

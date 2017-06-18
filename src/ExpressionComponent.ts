@@ -52,6 +52,20 @@ import { Componet, VM } from 'cmpx';
     {{/for}}
     <br />
 
+
+    <div>语句{{{: '{{for}}: {{for item in list sync}}{{/for}}' }}}</div>
+    <div>
+        <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
+        <button click="{{@this.add()}}">add数据({{this.num}})</button>
+    </div>
+    {{for item in this.list sync}}
+    <div>
+        {{$index}}: item({{item.id}}) [{{:new Date().valueOf()}}] <a href="javascript:void(0)" click={{@this.upIndex($index)}}>upIndex</a>
+        <a href="javascript:void(0)" click={{@this.removeIndex($index)}}>removeIndex</a>
+    </div>
+    {{/for}}
+    <br />
+
     <div>语句{{{: '{{if}}: {{if ok}}{{/if}}' }}}</div>
     <div>
         <button click="{{@this.ok1=!this.ok1; this.$update()}}">ok1({{this.ok1}})</button>
@@ -130,7 +144,27 @@ export default class ExpressionComponent extends Componet{
         this.makeUserList(num);
         this.$update();
     }
-
+    
+    upIndex(index:number){
+        if (index == 0) return;
+        var p = this.list[index-1];
+        this.list[index-1] = this.list[index];
+        this.list[index] = p;
+        this.$update();
+    }
+    
+    removeIndex(index:number){
+        this.list.splice(index, 1);
+        this.num  = this.list.length;
+        this.$update();
+    }
+    
+    add(){
+        this.list.push({id:new Date().valueOf()+ ""+(this.list.length-1)});
+        this.num  = this.list.length;
+        this.$update();
+    }
+  
     ok1 = true;
     ok2 = true;
     ok3 = true;

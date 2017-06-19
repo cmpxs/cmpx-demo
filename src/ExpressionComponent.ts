@@ -60,9 +60,11 @@ import { Componet, VM } from 'cmpx';
     </div>
     {{for item in this.list sync}}
     <div>
-        {{$index}}: item({{item.id}}) [{{:new Date().valueOf()}}] <a href="javascript:void(0)" click={{@this.upIndex($index)}}>upIndex</a>
+        <a href="javascript:void(0)" click={{@this.upIndex($index)}}>upIndex</a>
         <a href="javascript:void(0)" click={{@this.removeIndex($index)}}>removeIndex</a>
+        {{$index}}: item({{item.id}})
     </div>
+     {{if $odd}}[{{:new Date().valueOf()}}]{{else}}[odd]{{/if}}
     {{/for}}
     <br />
 

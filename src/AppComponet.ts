@@ -10,7 +10,7 @@ import ViewvarComponent from './VarComponet';
     tmpl:`<div class="app">
     <div>{{this.name}}</div>
     <div class="head">
-        <a href="javascript:void(0)" click={{@this.tabs(0)}}>语句&表达式</a>
+        <a href="javascript:void(0)" click={{@this.tabs(0)}}>语句&绑定</a>
         <a href="javascript:void(0)" click={{@this.tabs(1)}} >form</a>
         <a href="javascript:void(0)" click={{@this.tabs(2)}} >模板变量(@viewvar)</a>
     </div>

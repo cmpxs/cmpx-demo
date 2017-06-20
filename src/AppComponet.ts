@@ -45,6 +45,21 @@ import ViewvarComponent from './VarComponet';
             vertical-align: top;
         }
         .app .content .input {}
+
+        .app .head1 {
+            font-weight: bold;
+            margin: 8px 5px;
+        }
+        .app .desc1 {
+            margin: 6px 25px;
+            font-size: 14px
+        }
+        .app .toolbar1 {
+            margin: 5px 5px;
+        }
+        .app .content1 {
+            margin: 5px 10px 30px 10px;
+        }
     `
 })
 export default class AppComponet extends Componet{

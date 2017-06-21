@@ -43,6 +43,8 @@ import { Componet, VM } from 'cmpx';
     </div>
     <br />
 
+    <!--处理子组件-->
+    <bind-test text="{{#this.text}}" />
 </div>`
 })
 export default class BindDemoComponet extends Componet{
@@ -58,5 +60,65 @@ export default class BindDemoComponet extends Componet{
         this.$update();
     }
 
-    
+    onUpdate(cb){
+        console.log('onUpdate binddemo');
+        super.onUpdate(cb);
+    }
+
+}
+
+
+@VM({
+    name:'bind-test',
+    tmpl:`<div>
+    <div class="head1">只读绑定{{{: ': {{表达式}}' }}}</div>
+    <div class="desc1">绑定内容，View只能读取内容，不能写入</div>
+    <div class="toolbar1">
+        <button click="{{@this.changeText()}}">刷新数据</button>
+    </div>
+    <div class="content1">{{this.text}}</div>
+
+    <div class="head1">读写绑定{{{: ': {{# 属性}}' }}}</div>
+    <div class="desc1">绑定内容，View可以读取和写入内容，一般用于model或组件间通讯用</div>
+    <div class="toolbar1">
+        <button click="{{@this.changeText()}}">刷新数据, 会变</button>
+    </div>
+    <div class="content1">
+    <input type="text" model={{# this.text}}>
+    </div>
+
+</div>`
+})
+class TestChild extends Componet{
+    constructor(){
+        super();
+    }
+
+    text:string = 'text';
+    changeText(){
+        console.log('aaa');
+        this.text = new Date().toString();
+        this.$update();
+    }
+
+    onInit(cb){
+        console.log('onInit');
+        super.onInit(cb);
+    }
+
+    onReady(cb){
+        console.log('onReady');
+        super.onReady(cb);
+    }
+
+    onUpdate(cb){
+        console.log('onUpdate');
+        super.onUpdate(cb);
+    }
+
+    onDispose(){
+        super.onDispose();
+        console.log('onDispose');
+    }
+
 }

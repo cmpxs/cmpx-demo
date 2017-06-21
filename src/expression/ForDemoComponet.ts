@@ -52,10 +52,6 @@ import { Componet, VM } from 'cmpx';
 
     <div class="head1">{{{: '{{for item in this.list}} {{include /}} {{/for}}' }}}</div>
     <div class="desc1">遍历数组，结合include，实现无限循环</div>
-    <div class="toolbar1">
-        <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
-        <button click="{{@this.add()}}">add数据({{this.num}})</button>
-    </div>
     <div class="content1">
     {{tmpl id="tmpl1" let="$index=param.index, item=param.item"}}
     <div style="margin-left:20px;">

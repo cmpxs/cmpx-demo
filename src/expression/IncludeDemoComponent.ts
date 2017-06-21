@@ -4,10 +4,12 @@ import { Componet, VM } from 'cmpx';
     name:'incdemo',
     tmpl:`<div>
         
-    <div>语句{{{: '{{include & tmpl}}: {{include tmpl="tmplid" /}}' }}}</div>
-    <div>
+    <div class="head1">{{{: '{{include tmpl="tmplid" /}}' }}}</div>
+    <div class="desc1">引用tmpl1模板，并通过param与let之间传值</div>
+    <div class="toolbar1">
         <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
     </div>
+    <div class="content1">
     {{tmpl id="tmpl1" let="$index=param.$index, item = param.item"}}
         <div>
         {{$index}}: item({{item.id}})
@@ -16,14 +18,16 @@ import { Componet, VM } from 'cmpx';
     {{for item in this.list}}
         {{include tmpl="tmpl1" param="{$index:$index, item:item}" }}
     {{/for}}
-    <br />
+    </div>
 
-    <div>语句{{{: '{{include & render}}: {{include render="this.render" /}}' }}}</div>
-    <div>
+    <div class="head1">{{{: '{{include render="this.render" /}}' }}}</div>
+    <div class="desc1">引用render模板，支持动态模板，并通过param传值</div>
+    <div class="toolbar1">
         <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
     </div>
-    <!--param问题没支持-->
-    {{include render="this.render" }}
+    <div class="content1">
+        {{include render="this.render" param="{id:'11111'}" }}
+    </di>
 
 </div>`
 })
@@ -33,8 +37,8 @@ export default class IncludeDemoComponent extends Componet{
     constructor(){
         super();
         this.render = this.$render(`<div>
-            render ok ({{this.num}})
-        </div>`);
+            render ok ({{:this.num}}) [{{:param.id}} | {{:param.id1}}]
+        </div>`, {id1:'2222'});
         this.makeList(5);
     }
 

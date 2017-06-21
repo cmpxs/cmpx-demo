@@ -4,13 +4,14 @@ import { Componet, VM } from 'cmpx';
     name:'ifdemo',
     tmpl:`<div>
 
-    <div>语句{{{: '{{if}}: {{if ok}}{{/if}}' }}}</div>
-    <div>
+    <div class="head1">语句{{{: '{{if}}: {{if ok}}{{/if}}' }}}</div>
+    <div class="desc1">处理条件分支</div>
+    <div class="toolbar1">
         <button click="{{@this.ok1=!this.ok1; this.$update()}}">ok1({{this.ok1}})</button>
         <button click="{{@this.ok2=!this.ok2; this.$update()}}">ok2({{this.ok2}})</button>
         <button click="{{@this.ok3=!this.ok3; this.$update()}}">ok3({{this.ok3}})</button>
     </div>
-    <div>
+    <div class="content1">
         {{if this.ok1}}
             ok1:true
         {{else this.ok2}}
@@ -34,10 +35,19 @@ export default class IfDemoComponet extends Componet{
 
     constructor(){
         super();
+        this.makeList(5);
     }
 
     ok1 = true;
     ok2 = true;
     ok3 = true;
-    
+
+    list:Object[];
+    makeList(num:number){
+        let list = [];
+        for (var i=0;i<num;i++)
+            list.push({id:new Date().valueOf()+ ""+i});
+        this.list = list;
+    }
+
 }

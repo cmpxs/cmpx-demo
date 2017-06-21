@@ -3,26 +3,27 @@ import { Componet, VM, viewvar } from 'cmpx';
 @VM({
     name:'viewvar',
     tmpl:`<div>
-    <div>$var定义变量</div>
-    <div>
-        <span class="text">input1变量</span>
+    <div class="head1">$var定义变量</div>
+    <div class="desc1">使用$var定义模板变量，Componet里可以使用@viewvar来获取</div>
+    <div class="content1">
+        <span class="text">定义input1变量</span>
         <span class="input">
             <input type="text" model="{{#this.text}}" $var="input1" />
         </span>
     </div>
-    <div>
+    <div class="content1">
         <span class="text">input1.value</span>
         <span class="input">
             {{input1.value}}
         </span>
     </div>
-    <div>
+    <div class="content1">
         <span class="text">model值</span>
         <span class="input">
             {{this.text}}
         </span>
     </div>
-    <div>
+    <div class="content1">
         <span class="text">this.inputEle</span>
         <span class="input">
             {{this.inputEle&&this.inputEle.value}}
@@ -30,8 +31,9 @@ import { Componet, VM, viewvar } from 'cmpx';
     </div>
     <br />
 
-    <div>$array定义数组</div>
-    <div>
+    <div class="head1">$array定义数组</div>
+    <div class="desc1">$array定义数组变量，Componet里可以使用@viewvar来获取</div>
+    <div class="content1">
         <span class="text">foritem数组</span>
         <span class="input">
             <div>
@@ -44,7 +46,7 @@ import { Componet, VM, viewvar } from 'cmpx';
             {{/for}}
         </span>
     </div>
-    <div>
+    <div class="content1">
         <span class="text">foritem ({{foritem.length}})</span>
         <span class="input">
             {{for item in foritem}}
@@ -78,7 +80,7 @@ export default class ViewvarComponent extends Componet{
     }
 
     randNum(){
-        let num = Math.round(1+ Math.random()*100);
+        let num = Math.round(1+ Math.random()*5);
         this.makeUserList(num);
         console.time('foritem')
         //生成新数组foritem

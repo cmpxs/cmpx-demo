@@ -3,16 +3,18 @@ import { Componet, VM } from "cmpx";
 import FormComponet from './FormComponet';
 import ExpressionComponent from './ExpressionComponent';
 import ViewvarComponent from './VarComponet';
+import ChildComponet from './ChildComponet';
 
 @VM({
     name:'app',
-    include:[FormComponet, ExpressionComponent, ViewvarComponent],
+    include:[FormComponet, ExpressionComponent, ViewvarComponent, ChildComponet],
     tmpl:`<div class="app">
     <div>{{this.name}}</div>
     <div class="head">
         <a href="javascript:void(0)" click={{@this.tabs(0)}}>语句&绑定</a>
         <a href="javascript:void(0)" click={{@this.tabs(1)}} >form</a>
         <a href="javascript:void(0)" click={{@this.tabs(2)}} >模板变量(@viewvar)</a>
+        <a href="javascript:void(0)" click={{@this.tabs(3)}} >组件</a>
     </div>
     <div class="content">
     {{if this.index == 0}}
@@ -21,6 +23,8 @@ import ViewvarComponent from './VarComponet';
         <formtest />
     {{else this.index == 2}}
         <viewvar />
+    {{else this.index == 3}}
+        <childcmp />
     {{/if}}
     </div>
 </div>`,

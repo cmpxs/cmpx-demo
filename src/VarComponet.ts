@@ -1,5 +1,22 @@
 import { Componet, VM, viewvar } from 'cmpx';
 
+
+@VM({
+    name:'viewvarchilde',
+    tmpl:`<div>
+    {{this.text}}
+</div>`
+})
+export class ViewvarChildComponent extends Componet{
+    text:string = 'text';
+
+    randomText(){
+        this.text = new Date().toString();
+        this.$update();
+    }
+
+}
+
 @VM({
     name:'viewvar',
     tmpl:`<div>
@@ -30,6 +47,15 @@ import { Componet, VM, viewvar } from 'cmpx';
         </span>
     </div>
     <br />
+
+    <div class="head1">$var定义变量</div>
+    <div class="desc1">使用$var定义模板变量，Componet里可以使用@viewvar来获取</div>
+    <div class="toolbar1">
+        <button click="{{@viewvarchilde.randomText();}}">点击刷新viewvarchilde数据</button>
+    </div>
+    <div class="content1">
+        <viewvarchilde $var="viewvarchilde" />
+    </div>
 
     <div class="head1">$array定义数组</div>
     <div class="desc1">$array定义数组变量，Componet里可以使用@viewvar来获取</div>

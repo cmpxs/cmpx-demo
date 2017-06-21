@@ -50,6 +50,26 @@ import { Componet, VM } from 'cmpx';
     {{/for}}
     </div>
 
+    <div class="head1">{{{: '{{for item in this.list}} {{include /}} {{/for}}' }}}</div>
+    <div class="desc1">遍历数组，结合include，实现无限循环</div>
+    <div class="toolbar1">
+        <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
+        <button click="{{@this.add()}}">add数据({{this.num}})</button>
+    </div>
+    <div class="content1">
+    {{tmpl id="tmpl1" let="$index=param.index, item=param.item"}}
+    <div style="margin-left:20px;">
+        {{:$index}}: item({{:item.id}}, {{:item.name}})
+        {{for cItem in item.children}}
+            {{include tmpl="tmpl1" param="{index:$index, item:cItem}"}}
+        {{/for}}
+    </div>
+    {{/tmpl}}
+    {{for item in this.list2 sync}}
+        {{include tmpl="tmpl1" param="{index:$index, item:item}"}}
+    {{/for}}
+    </div>
+
 </div>`
 })
 export default class ForDemoComponet extends Componet{
@@ -57,6 +77,14 @@ export default class ForDemoComponet extends Componet{
     constructor(){
         super();
         this.makeList(5);
+
+        setTimeout(()=>{
+            let index = 1;
+            var p = this.list2[index-1];
+            this.list2[index-1] = this.list2[index];
+            this.list2[index] = p;
+            this.$update();
+        }, 5000);
     }
 
     text:string = 'text';
@@ -105,6 +133,36 @@ export default class ForDemoComponet extends Componet{
     forSync(item, count, index, list){
         return list.indexOf(item);
     }
-  
+
+    list2 = [{
+        id: 1,
+        name: 'test1',
+        children: [{
+            id: 11,
+            name: 'test1.child1',
+            children: []
+        }, {
+            id: 12,
+            name: 'test1.child2',
+            children: [{
+                id: 121,
+                name: 'test1.child2.child1',
+                children: [{
+                    id: 1211,
+                    name: 'test1.child2.child1.child1',
+                    children: null
+                }]
+            }]
+        }]
+    }, {
+        id: 2,
+        name: 'test2',
+        children: []
+    }, {
+        id: 3,
+        name: 'test3',
+        children: []
+    }];
+
     
 }

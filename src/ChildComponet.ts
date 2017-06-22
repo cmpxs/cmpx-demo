@@ -1,6 +1,5 @@
 import { Componet, VM, viewvar, CmpxEvent } from 'cmpx';
 
-
 @VM({
     name:'childitem',
     tmpl:`<div>
@@ -24,9 +23,18 @@ export class ChildItem2Component extends Componet{
 
     onUpdate(cb){
         this.ev.trigger([this.text]);
-        console.log('onUpdate');
         super.onUpdate(cb);
     }
+}
+
+
+@VM({
+    name:'loaditem',
+    tmplUrl:'tmpl1.html',
+    styleUrl:'css1.css'
+})
+export class LoadItemComponent extends Componet{
+    text:string = 'loaditem text';
 }
 
 @VM({
@@ -56,15 +64,15 @@ export class ChildItem2Component extends Componet{
     </div>
 
     <div class="head1">事件方式通讯</div>
-    <div class="desc1">通过标签属性通讯</div>
+    <div class="desc1">通过事件方式通讯</div>
     <div class="content1">
-        <span class="text">定义input1变量</span>
         <span class="input">
             <childitem2 ev="{{@ this.text2=arguments[0];this.$update()}}" />
             {{this.text2}}
         </span>
     </div>
 
+    <loaditem />
 </div>`
 })
 export default class ChildComponet extends Componet{

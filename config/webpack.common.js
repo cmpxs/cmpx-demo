@@ -20,10 +20,10 @@ module.exports = {
         test: /\.ts$/,
         loaders: ['ts-loader']
       },
-      // {
-      //   test: /\.html$/,
-      //   loader: 'html'
-      // },
+      {
+        test: /\.html$/,
+        loaders: ['html-loader']
+      },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
         loader: 'file?name=assets/[name].[hash].[ext]'
@@ -47,7 +47,18 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      inject:true
+    }),
+    new HtmlWebpackPlugin({  // Also generate a test.html 
+      filename: 'tmpl1.html',
+      template: 'src/tmpl1.html',
+      inject:false
+    }),
+    new HtmlWebpackPlugin({  // Also generate a test.html 
+      filename: 'css1.css',
+      template: 'src/css1.css',
+      inject:false
     })
   ]
 };

@@ -14,7 +14,7 @@ import ChildComponet from './ChildComponet';
         <a href="javascript:void(0)" click={{@this.tabs(0)}}>语句&绑定</a>
         <a href="javascript:void(0)" click={{@this.tabs(1)}} >form</a>
         <a href="javascript:void(0)" click={{@this.tabs(2)}} >模板变量(@viewvar)</a>
-        <a href="javascript:void(0)" click={{@this.tabs(3)}} >组件</a>
+        <a href="javascript:void(0)" click={{@this.tabs(3)}} >组件&&组件</a>
     </div>
     <div class="content">
     {{if this.index == 0}}

@@ -8,7 +8,10 @@ import { Componet, VM, viewvar, CmpxEvent } from 'cmpx';
 })
 export class ChildItemComponent extends Componet{
     text:string = 'text';
-
+    setText(text:string){
+        this.text = text;
+        this.$update();
+    }
 }
 
 @VM({
@@ -78,8 +81,11 @@ export class LoadItemComponent extends Componet{
 export default class ChildComponet extends Componet{
     text:string = 'a';
     onReady(cb){
-        console.log('onReady');
+        setTimeout(()=>this.childitem1.setText('111111'), 2000);
         super.onReady(cb);
     }
+
+    @viewvar()
+    childitem1:ChildItemComponent;
 
 }

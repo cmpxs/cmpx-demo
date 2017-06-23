@@ -81,7 +81,7 @@ export class LoadItemComponent extends Componet{
 export default class ChildComponet extends Componet{
     text:string = 'a';
     onReady(cb){
-        setTimeout(()=>this.childitem1.setText('111111'), 2000);
+        setTimeout(()=>{ this.childitem1 && this.childitem1.setText('111111')}, 2000);
         super.onReady(cb);
     }
 

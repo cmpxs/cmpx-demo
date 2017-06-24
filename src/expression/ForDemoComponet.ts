@@ -55,7 +55,7 @@ import { Componet, VM } from 'cmpx';
     <div class="content1">
     {{tmpl id="tmpl1" let="$index=param.index, item=param.item"}}
     <div style="margin-left:20px;">
-        {{:$index}}: item({{:item.id}}, {{:item.name}})
+        {{$index}}: item({{:item.id}}, {{:item.name}})
         {{for cItem in item.children}}
             {{include tmpl="tmpl1" param="{index:$index, item:cItem}"}}
         {{/for}}

@@ -2,9 +2,7 @@ import { Componet, VM, viewvar, CmpxEvent } from 'cmpx';
 
 @VM({
     name:'childitem',
-    tmpl:`<div>
-    {{this.text}}
-</div>`
+    tmpl:'<div>{{this.text}}\n\r</div>'
 })
 export class ChildItemComponent extends Componet{
     text:string = 'text';
@@ -43,7 +41,7 @@ export class LoadItemComponent extends Componet{
 @VM({
     name:'childcmp',
     tmpl:`<div>
-    <div class="head1">父子属性通讯</div>
+    <div class="head1">父子属性通讯1</div>
     <div class="desc1">通过标签属性通讯</div>
     <div class="content1">
         <span class="text">定义input1变量</span>
@@ -70,7 +68,7 @@ export class LoadItemComponent extends Componet{
     <div class="desc1">通过事件方式通讯</div>
     <div class="content1">
         <span class="input">
-            <childitem2 ev="{{@ this.text2=arguments[0];this.$update()}}" />
+            <childitem2 ev="{{@ this.text2=arguments[0];this.$update()}}" text="text111" />
             {{this.text2}}
         </span>
     </div>

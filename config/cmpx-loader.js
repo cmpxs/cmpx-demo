@@ -1,69 +1,11 @@
 
-var path = require('path'),
-    fs = require('fs');
+// var path = require('path'),
+//     fs = require('fs'),
+//     build = require('cmpx-build');
 
-//cmpx-loader
-var cmpx = require('cmpx'),
-    CompileRender = cmpx.CompileRender;
-
-
-var _tmplRegex = /\s*@VM\s*\((?:\n|\r|\s)*\{(?:\n|\r|.)*?tmpl\s*\:\s*(([`])[^`]*?\2)/gmi,
-    _tmplRegex2 = /\s*@VM\s*\((?:\n|\r|\s)*\{(?:\n|\r|.)*?tmpl\s*\:\s*((["']).*\2)/gmi
-    _renderRegex = /\s*\$render\s*\(\s*(([`])[^`]*?\2)/gmi,
-    _renderRegex2 = /\s*\$render\s*\(\s*((["']).*\2)/gmi
-    _tmplUrlRegex = /\s*@VM\s*\((?:\n|\r|\s)*\{(?:\n|\r|.)*?tmplUrl\s*\:\s*((["']).*\2)/gmi,
-    _styleUrlRegex = /\s*@VM\s*\((?:\n|\r|\s)*\{(?:\n|\r|.)*?styleUrl\s*\:\s*((["']).*\2)/gmi;
-
-module.exports = function(source){
-  let loader = this;
-  if(_tmplRegex.test(source)){
-    source = source.replace(_tmplRegex, function(find, tmpl, split){
-      find = find.replace(tmpl, new CompileRender(tmpl.substr(1, tmpl.length-2)).contextFn.toString().replace(/function [^(]*/, 'function'));
-      return find;
-    });
-  }
-  if(_tmplRegex2.test(source)){
-    source = source.replace(_tmplRegex2, function(find, tmpl, split){
-      find = find.replace(tmpl, new CompileRender(tmpl.substr(1, tmpl.length-2)).contextFn.toString().replace(/function [^(]*/, 'function'));
-      return find;
-    });
-  }
-  if(_renderRegex.test(source)){
-    source = source.replace(_renderRegex, function(find, tmpl, split){
-      find = find.replace(tmpl, new CompileRender(tmpl.substr(1, tmpl.length-2)).contextFn.toString().replace(/function [^(]*/, 'function'));
-      return find;
-    });
-  }
-  if(_renderRegex2.test(source)){
-    source = source.replace(_renderRegex2, function(find, tmpl, split){
-      find = find.replace(tmpl, new CompileRender(tmpl.substr(1, tmpl.length-2)).contextFn.toString().replace(/function [^(]*/, 'function'));
-      return find;
-    });
-  }
-  if (_tmplUrlRegex.test(source)){
-    source = source.replace(_tmplUrlRegex, (find, tmpl, split)=>{
-      let filePath = tmpl.substr(1, tmpl.length-2);
-      filePath = path.join(path.dirname(this.resourcePath), filePath);
-      //setTimeout(function(){
-          loader.addDependency(filePath);
-      //}, 100);
-      let fileContent = fs.readFileSync(filePath, 'utf-8');
-      find = find.replace(tmpl, new CompileRender(fileContent).contextFn.toString());
-      return find;
-    });
-  }
-  if (_styleUrlRegex.test(source)){
-    source = source.replace(_styleUrlRegex, (find, tmpl, split)=>{
-      let filePath = tmpl.substr(1, tmpl.length-2);
-      filePath = path.join(path.dirname(this.resourcePath), filePath);
-      //setTimeout(function(){
-          loader.addDependency(filePath);
-          //console.log(filePath);
-      //}, 100);
-      let fileContent = fs.readFileSync(filePath, 'utf-8');
-      find = find.replace(tmpl, 'function() { return `'+fileContent+'`; }');
-      return find;
-    });
-  }
-  return source;
-};
+// module.exports = function(source){
+//   let {content, files} = build.buildTypeScript(this.resourcePath, source);
+//   files.length > 0 && files.forEach(this.addDependency, this);
+  
+//   return content;
+// };

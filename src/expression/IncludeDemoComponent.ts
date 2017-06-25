@@ -37,8 +37,8 @@ export default class IncludeDemoComponent extends Componet{
     constructor(){
         super();
         this.render = this.$render(`<div>
-            render ok ({{this.num}}) [{{:param.id}} | {{:param.id1}}]
-        </div>`, {id1:'2222'});
+            render ok ({{this.num}}) [{{:param.id}}]
+        </div>`);
         this.makeList(5);
     }
 

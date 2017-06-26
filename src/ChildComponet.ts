@@ -39,6 +39,17 @@ export class LoadItemComponent extends Componet{
 }
 
 @VM({
+    name:'incitem',
+    tmpl:`<div>
+    {{include tmpl="incTmpl" /}}
+    <div>aaa:{{this.text}}</div>
+</div>`
+})
+export class IncItemComponent extends Componet{
+    text:string = 'inc text';
+}
+
+@VM({
     name:'childcmp',
     tmpl:`<div>
     <div class="head1">父子属性通讯1</div>
@@ -74,12 +85,20 @@ export class LoadItemComponent extends Componet{
     </div>
 
     <loaditem />
+
+    <incitem>
+    {{tmpl id="incTmpl"}}
+        {{this.text}}
+    {{/tmpl}}
+    </incitem>
 </div>`
 })
 export default class ChildComponet extends Componet{
     text:string = 'a';
     onReady(cb){
-        setTimeout(()=>{ this.childitem1 && this.childitem1.setText('111111')}, 2000);
+        setTimeout(()=>{
+            this.childitem1 && this.childitem1.setText('111111')
+        }, 2000);
         super.onReady(cb);
     }
 

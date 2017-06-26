@@ -55,7 +55,9 @@ export default class IncludeDemoComponent extends Componet{
     randNum(){
         let num = Math.round(1+ Math.random()*5);
         this.makeList(num);
+        console.time('inc');
         this.$update();
+        console.timeEnd('inc');
     }
 
 }

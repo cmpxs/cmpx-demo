@@ -1,4 +1,4 @@
-import { Componet, VM } from 'cmpx';
+﻿import { Componet, VM } from 'cmpx';
 
 @VM({
     name:'ifdemo',
@@ -10,12 +10,15 @@ import { Componet, VM } from 'cmpx';
         <button click="{{@this.ok1=!this.ok1; this.$update()}}">ok1({{this.ok1}})</button>
         <button click="{{@this.ok2=!this.ok2; this.$update()}}">ok2({{this.ok2}})</button>
         <button click="{{@this.ok3=!this.ok3; this.$update()}}">ok3({{this.ok3}})</button>
+        <button click="{{@this.makeList(3); this.$update()}}">makeList</button>
     </div>
+{{tmpl id="tmpl1"}} tmpltext: aaaaa{{/tmpl}}
     <div class="content1">
         {{if this.ok1}}
             ok1:true
         {{else this.ok2}}
             ok1:false ok2:true
+            {{include tmpl="tmpl1" /}}
         {{else this.ok3}}
             ok1:false ok2:false ok3:true
         {{else}}
@@ -26,6 +29,23 @@ import { Componet, VM } from 'cmpx';
             </div>
             {{/for}}
         {{/if}}
+	<div>=================</div>
+	{{ifx this.ok1}}
+            ok1:true
+        {{else this.ok2}}
+            ok1:false ok2:true
+            {{include tmpl="tmpl1" /}}
+        {{else this.ok3}}
+            ok1:false ok2:false ok3:true
+        {{else}}
+            ok1:false ok2:false ok3:false
+            {{for item in this.list}}
+            <div>
+                {{$index}}: item({{item.id}})
+            </div>
+            {{/for}}
+        {{/ifx}}
+
     </div>
     <br />
 

@@ -71,7 +71,7 @@ export default class BindDemoComponet extends Componet{
 @VM({
     name:'bind-test',
     tmpl:`<div>
-    <div class="head1">只读绑定{{{: ': {{表达式}}' }}}</div>
+    <div class="head1">只读绑定!!!{{{: ': {{表达式}}' }}}</div>
     <div class="desc1">绑定内容，View只能读取内容，不能写入</div>
     <div class="toolbar1">
         <button click="{{@this.changeText()}}">刷新数据</button>

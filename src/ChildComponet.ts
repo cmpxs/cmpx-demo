@@ -88,7 +88,7 @@ export class IncItemComponent extends Componet{
 
     <incitem>
     {{tmpl id="incTmpl"}}
-        tmpl1:{{this.text}}
+        tmpl:{{this.text}}
     {{/tmpl}}
     </incitem>
 </div>`

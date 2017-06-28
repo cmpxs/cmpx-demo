@@ -29,7 +29,10 @@
             </div>
             {{/for}}
         {{/if}}
-	<div>=================</div>
+    </div>
+    <div class="head1">语句{{{: '{{ifx}}: {{ifx ok}}{{/ifx}}' }}}</div>
+    <div class="desc1">处理条件分支, 与if不同它内容不会删除，只是暂时分离出去</div>
+    <div class="content1">
 	{{ifx this.ok1}}
             ok1:true
         {{else this.ok2}}

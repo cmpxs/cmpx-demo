@@ -16,7 +16,7 @@ import IncludeDemoComponent from './expression/IncludeDemoComponent';
         <a href="javascript:void(0)" click={{@this.tabs(3)}}>tmpl & include</a>
         <a href="javascript:void(0)" click={{@this.tabs(9)}}>其它</a>
     </div>
-    {{if this.index == 0}}
+    {{ifx this.index == 0}}
         <binddemo />
     {{else this.index == 1}}
         <fortest />
@@ -25,7 +25,7 @@ import IncludeDemoComponent from './expression/IncludeDemoComponent';
     {{else this.index == 3}}
         <incdemo />
     {{else}}
-    {{/if}}
+    {{/ifx}}
 </div>`
 })
 export default class ExpressionComponent extends Componet{

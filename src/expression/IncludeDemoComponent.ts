@@ -16,7 +16,7 @@ import { Componet, VM } from 'cmpx';
         </div>
     {{/tmpl}}
     {{for item in this.list}}
-        {{include tmpl="tmpl1" param="{$index:$index, item:item}" }}
+        {{include tmpl="tmpl1" param="{$index:$index, item:item}" /}}
     {{/for}}
     </div>
 
@@ -26,8 +26,22 @@ import { Componet, VM } from 'cmpx';
         <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
     </div>
     <div class="content1">
-        {{include render="this.render" param="{id:'11111'}" }}
-    </di>
+        {{include render="this.render" param="{id:'11111'}" /}}
+    </div>
+
+    <div class="head1">include默认内容</div>
+    <div class="desc1">引用模板不存在使用默认内容</div>
+    <div class="content1">
+        {{tmpl id="tmpl222"}}
+            tmpl222Text
+        {{/tmpl}}
+        {{include tmpl="tmpl222"}}
+            include1Text
+        {{/include}}
+        {{include tmpl="sdfasdfasdfasfdsf"}}
+            include2Text
+        {{/include}}
+    </div>
 
 </div>`
 })

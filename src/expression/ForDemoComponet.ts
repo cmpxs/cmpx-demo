@@ -17,37 +17,37 @@ import { Componet, VM } from 'cmpx';
     {{/for}}
     </div>
 
-    <div class="head1">{{{: '{{for item in this.list sync}}{{/for}}' }}}</div>
+    <div class="head1">{{{: '{{forx item in this.list}}{{/forx}}' }}}</div>
     <div class="desc1">遍历数组，启动sync属性，如果数组元素添加或删除等变动，根据变动同步到view</div>
     <div class="toolbar1">
         <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
         <button click="{{@this.add()}}">add数据({{this.num}})</button>
     </div>
     <div class="content1">
-    {{for item in this.list sync}}
+    {{forx item in this.list}}
     <div>
         <a href="javascript:void(0)" click={{@this.upIndex($index)}}>upIndex</a>
         <a href="javascript:void(0)" click={{@this.removeIndex($index)}}>removeIndex</a>
         {{$index}}: item({{item.id}})
     </div>
      {{if $odd}}[{{:new Date().valueOf()}}]{{else}}[odd]{{/if}}
-    {{/for}}
+    {{/forx}}
     </div>
 
-    <div class="head1">{{{: '{{for item in this.list sync="this.forSync"}}{{/for}}' }}}</div>
+    <div class="head1">{{{: '{{forx item in this.list sync="this.forSync"}}{{/forx}}' }}}</div>
     <div class="desc1">遍历数组，启动sync属性并指定同步方式，如果数组元素添加或删除等变动，根据变动同步到view</div>
     <div class="toolbar1">
         <button click="{{@this.randNum()}}">刷新数据({{this.num}})</button>
         <button click="{{@this.add()}}">add数据({{this.num}})</button>
     </div>
     <div class="content1">
-    {{for item in this.list sync="this.forSync"}}
+    {{forx item in this.list sync="this.forSync"}}
     <div>
         <a href="javascript:void(0)" click={{@this.upIndex($index)}}>upIndex</a>
         <a href="javascript:void(0)" click={{@this.removeIndex($index)}}>removeIndex</a>
         {{$index}}: item({{item.id}})
     </div>
-    {{/for}}
+    {{/forx}}
     </div>
 
     <div class="head1">{{{: '{{for item in this.list}} {{include /}} {{/for}}' }}}</div>
@@ -57,13 +57,13 @@ import { Componet, VM } from 'cmpx';
     <div style="margin-left:20px;">
         {{$index}}: item({{:item.id}}, {{:item.name}})
         {{for cItem in item.children}}
-            {{include tmpl="tmpl1" param="{index:$index, item:cItem}"}}
+            {{include tmpl="tmpl1" param="{index:$index, item:cItem}" /}}
         {{/for}}
     </div>
     {{/tmpl}}
-    {{for item in this.list2 sync}}
-        {{include tmpl="tmpl1" param="{index:$index, item:item}"}}
-    {{/for}}
+    {{forx item in this.list2}}
+        {{include tmpl="tmpl1" param="{index:$index, item:item}" /}}
+    {{/forx}}
     </div>
 
 </div>`

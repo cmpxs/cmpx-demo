@@ -11,6 +11,9 @@ export declare class ChildItem2Component extends Componet {
 export declare class LoadItemComponent extends Componet {
     text: string;
 }
+export declare class IncItemComponent extends Componet {
+    text: string;
+}
 export default class ChildComponet extends Componet {
     text: string;
     onReady(cb: any): void;

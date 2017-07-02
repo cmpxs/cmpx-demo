@@ -1,5 +1,17 @@
 import { Componet, VM } from 'cmpx';
 
+
+@VM({
+    name:'incchilde',
+    tmpl:`<div>
+        {{this.text}}
+
+</div>`
+})
+class IncludeChildComponent extends Componet{
+    text = "IncludeChildComponent";
+}
+
 @VM({
     name:'incdemo',
     tmpl:`<div>
@@ -43,10 +55,17 @@ import { Componet, VM } from 'cmpx';
         {{/include}}
     </div>
 
+    <div class="head1">include默认内容</div>
+    <div class="desc1">引用模板不存在使用默认内容</div>
+    <div class="content1">
+        {{include render="this.renderCp" /}}
+    </div>
+
 </div>`
 })
 export default class IncludeDemoComponent extends Componet{
     render:any;
+    renderCp;
 
     constructor(){
         super();
@@ -54,6 +73,7 @@ export default class IncludeDemoComponent extends Componet{
             render ok ({{this.num}}) [{{:param.id}}]
         </div>`);
         this.makeList(5);
+        this.renderCp = this.$render(new IncludeChildComponent())
     }
 
     list:Object[];

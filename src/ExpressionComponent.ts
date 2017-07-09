@@ -1,10 +1,10 @@
-import { Componet, VM } from 'cmpx';
+import { Componet, VMComponet } from 'cmpx';
 import ForDemoComponent from './expression/ForDemoComponet';
 import BindDemoComponet from './expression/BindDemoComponet';
 import IfDemoComponet from './expression/IfDemoComponet';
 import IncludeDemoComponent from './expression/IncludeDemoComponent';
 
-@VM({
+@VMComponet({
     name:'expression',
     include:[BindDemoComponet, ForDemoComponent,
         IfDemoComponet, IncludeDemoComponent],

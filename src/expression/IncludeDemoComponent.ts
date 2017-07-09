@@ -1,7 +1,7 @@
-import { Componet, VM } from 'cmpx';
+import { Componet, VMComponet } from 'cmpx';
 
 
-@VM({
+@VMComponet({
     name:'incchilde',
     tmpl:`<div>
         {{this.text}}
@@ -12,7 +12,7 @@ class IncludeChildComponent extends Componet{
     text = "IncludeChildComponent";
 }
 
-@VM({
+@VMComponet({
     name:'incdemo',
     tmpl:`<div>
         

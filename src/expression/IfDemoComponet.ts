@@ -1,6 +1,6 @@
-﻿import { Componet, VM } from 'cmpx';
+﻿import { Componet, VMComponet } from 'cmpx';
 
-@VM({
+@VMComponet({
     name:'ifdemo',
     tmpl:`<div>
 

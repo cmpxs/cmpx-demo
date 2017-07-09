@@ -1,11 +1,11 @@
 
-import { Componet, VM } from "cmpx";
+import { Componet, VMComponet } from "cmpx";
 import FormComponet from './FormComponet';
 import ExpressionComponent from './ExpressionComponent';
 import ViewvarComponent from './VarComponet';
 import ChildComponet from './ChildComponet';
 
-@VM({
+@VMComponet({
     name:'app',
     include:[FormComponet, ExpressionComponent, ViewvarComponent, ChildComponet],
     tmpl:`<div class="app">
@@ -13,7 +13,7 @@ import ChildComponet from './ChildComponet';
     <div class="head">
         <a href="javascript:void(0)" click={{@this.tabs(0)}}>语句&绑定</a>
         <a href="javascript:void(0)" click={{@this.tabs(1)}} >form</a>
-        <a href="javascript:void(0)" click={{@this.tabs(2)}} >模板变量(@viewvar)</a>
+        <a href="javascript:void(0)" click={{@this.tabs(2)}} >模板变量(@VMVar)</a>
         <a href="javascript:void(0)" click={{@this.tabs(3)}} >组件&&组件</a>
     </div>
     <div class="content">

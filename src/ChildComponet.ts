@@ -1,6 +1,6 @@
-import { Componet, VM, viewvar, CmpxEvent } from 'cmpx';
+import { Componet, VMComponet, VMVar, CmpxEvent } from 'cmpx';
 
-@VM({
+@VMComponet({
     name:'childitem',
     tmpl:'<div>{{this.text}}\n\r</div>'
 })
@@ -12,7 +12,7 @@ export class ChildItemComponent extends Componet{
     }
 }
 
-@VM({
+@VMComponet({
     name:'childitem2',
     tmpl:`<div>
     <input type="text" model="{{#this.text}}" />
@@ -29,7 +29,7 @@ export class ChildItem2Component extends Componet{
 }
 
 
-@VM({
+@VMComponet({
     name:'loaditem',
     tmplUrl:'tmpl1.html',
     styleUrl:'css1.css'
@@ -38,7 +38,7 @@ export class LoadItemComponent extends Componet{
     text:string = 'loaditem text';
 }
 
-@VM({
+@VMComponet({
     name:'incitem',
     tmpl:`<div>
     {{include tmpl="incTmpl" /}}
@@ -49,7 +49,7 @@ export class IncItemComponent extends Componet{
     text:string = 'inc text';
 }
 
-@VM({
+@VMComponet({
     name:'childcmp',
     tmpl:`<div>
     <div class="head1">父子属性通讯1</div>
@@ -102,7 +102,7 @@ export default class ChildComponet extends Componet{
         super.onReady(cb);
     }
 
-    @viewvar()
+    @VMVar()
     childitem1:ChildItemComponent;
 
 }

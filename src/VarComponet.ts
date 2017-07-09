@@ -1,9 +1,51 @@
-import { Componet, VM, viewvar } from 'cmpx';
+import { Componet, VMComponet, VMVar, AttrBase, VMAttr, VMEvent } from 'cmpx';
+let  i=0;
+@VMAttr({
+    name:'testcolor'
+})
+export class RedAttr extends AttrBase{
 
+    constructor(element:HTMLElement){
+        super(element);
+    }
 
-@VM({
+    onUpdate(){
+        console.log('onUpdate testcolor', this.content());
+        super.onUpdate();
+    }
+
+    onRead(){
+        this.css('color', 'red');
+        this.attr('aaa', this.content());
+        console.log('onRead... testcolor', this.content());
+        super.onRead();
+    }
+
+    onWrite(){
+        console.log('onWrite testcolor', this.content());
+        super.onWrite();
+    }
+
+    iii = (++i);
+    onReady(){
+        console.log('onReady testcolor', this.iii, this.content());
+        super.onReady();
+    }
+
+    onDispose(){
+        console.log('onDispose testcolor');
+        super.onDispose();
+    }
+
+    @VMEvent()
+    click(event:Event){
+        console.log(this, event);
+    }
+}
+
+@VMComponet({
     name:'viewvarchilde',
-    tmpl:`<div>
+    tmpl:`<div rrr="rrr" testcolor="red">
     {{this.text}}
 </div>`
 })
@@ -17,11 +59,11 @@ export class ViewvarChildComponent extends Componet{
 
 }
 
-@VM({
+@VMComponet({
     name:'viewvar',
     tmpl:`<div>
     <div class="head1">$var定义变量</div>
-    <div class="desc1">使用$var定义模板变量，Componet里可以使用@viewvar来获取</div>
+    <div class="desc1">使用$var定义模板变量，Componet里可以使用@VMVar</div>
     <div class="content1">
         <span class="text">定义input1变量</span>
         <span class="input">
@@ -49,7 +91,7 @@ export class ViewvarChildComponent extends Componet{
     <br />
 
     <div class="head1">$var定义变量</div>
-    <div class="desc1">使用$var定义模板变量，Componet里可以使用@viewvar来获取</div>
+    <div class="desc1">使用$var定义模板变量，Componet里可以使用@VMVar</div>
     <div class="toolbar1">
         <button click="{{@viewvarchilde.randomText();}}">点击刷新viewvarchilde数据</button>
     </div>
@@ -58,7 +100,7 @@ export class ViewvarChildComponent extends Componet{
     </div>
 
     <div class="head1">$array定义数组</div>
-    <div class="desc1">$array定义数组变量，Componet里可以使用@viewvar来获取</div>
+    <div class="desc1">$array定义数组变量，Componet里可以使用@VMVar来获取</div>
     <div class="content1">
         <span class="text">foritem数组</span>
         <span class="input">
@@ -87,7 +129,7 @@ export class ViewvarChildComponent extends Componet{
 export default class ViewvarComponent extends Componet{
     text:string;
 
-    @viewvar('input1')
+    @VMVar('input1')
     inputEle:HTMLElement;
 
     constructor(){
@@ -114,7 +156,7 @@ export default class ViewvarComponent extends Componet{
         console.timeEnd('foritem')
     }
 
-    @viewvar('foritem')
+    @VMVar('foritem')
     divItems:HTMLElement[];
 
     

@@ -1,6 +1,6 @@
-import { Componet, VM } from 'cmpx';
+import { Componet, VMComponet } from 'cmpx';
 
-@VM({
+@VMComponet({
     name:'binddemo',
     tmpl:`<div>
 
@@ -68,7 +68,7 @@ export default class BindDemoComponet extends Componet{
 }
 
 
-@VM({
+@VMComponet({
     name:'bind-test',
     tmpl:`<div>
     <div class="head1">只读绑定!!!{{{: ': {{表达式}}' }}}</div>

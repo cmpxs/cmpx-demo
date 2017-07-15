@@ -1,34 +1,36 @@
-import { Componet, VMComponet, VMVar, AttrBase, VMAttr, VMEvent } from 'cmpx';
+import { Componet, VMComponet, VMVar, Bind, VMBind, VMAttr, VMEvent } from 'cmpx';
 let  i=0;
-@VMAttr({
+@VMBind({
     name:'testcolor'
 })
-export class RedAttr extends AttrBase{
+export class RedBind extends Bind{
 
     constructor(element:HTMLElement){
         super(element);
+        console.log('RedBind');
     }
 
+    @VMAttr('testcolor')
+    testcolor:string;
+
     onUpdate(){
-        console.log('onUpdate testcolor', this.content());
+        console.log('onUpdate testcolor', this.iii, this.testcolor);
         super.onUpdate();
     }
 
-    onRead(){
-        this.css('color', 'red');
-        this.attr('aaa', this.content());
-        console.log('onRead... testcolor', this.content());
-        super.onRead();
-    }
+    @VMAttr('style.color')
+    color:string;
 
-    onWrite(){
-        console.log('onWrite testcolor', this.content());
-        super.onWrite();
+    onRead(){
+        console.log('onRead testcolor', this.iii, this.testcolor, this.color);
+        this.color = this.testcolor;
+        //this.style = 'color:' + this.testcolor;
+        super.onRead();
     }
 
     iii = (++i);
     onReady(){
-        console.log('onReady testcolor', this.iii, this.content());
+        //console.log('onReady testcolor', this.iii, this.testcolor, this.style);
         super.onReady();
     }
 
@@ -45,12 +47,25 @@ export class RedAttr extends AttrBase{
 
 @VMComponet({
     name:'viewvarchilde',
-    tmpl:`<div rrr="rrr" testcolor="red">
-    {{this.text}}
+    tmpl:`<div rrr="rrr">
+    <span testcolor="red">{{this.text}}</span><span testcolor="{{this.color}}">ssssss</span>
 </div>`
 })
 export class ViewvarChildComponent extends Componet{
     text:string = 'text';
+    color = 'black'
+
+    onInit(cb){
+        setTimeout(()=>{
+            this.color = 'blue';
+            this.$update();
+        }, 2000);
+        setTimeout(()=>{
+            this.color = 'yellow';
+            this.$update();
+        }, 10000);
+        super.onInit(cb);
+    }
 
     randomText(){
         this.text = new Date().toString();

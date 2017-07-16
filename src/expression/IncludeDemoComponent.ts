@@ -14,6 +14,7 @@ class IncludeChildComponent extends Componet{
 
 @VMComponet({
     name:'incdemo',
+    include:[IncludeChildComponent],
     tmpl:`<div>
         
     <div class="head1">{{{: '{{include tmpl="tmplid" /}}' }}}</div>

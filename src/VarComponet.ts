@@ -47,11 +47,12 @@ export class RedBind extends Bind{
 
 @VMComponet({
     name:'viewvarchilde',
+    include:[RedBind],
     tmpl:`<div rrr="rrr">
     <span testcolor="red">{{this.text}}</span><span testcolor="{{this.color}}">ssssss</span>
 </div>`
 })
-export class ViewvarChildComponent extends Componet{
+export class ViewvarChildComponet extends Componet{
     text:string = 'text';
     color = 'black'
 
@@ -76,6 +77,7 @@ export class ViewvarChildComponent extends Componet{
 
 @VMComponet({
     name:'viewvar',
+    include:[ViewvarChildComponet],
     tmpl:`<div>
     <div class="head1">$var定义变量</div>
     <div class="desc1">使用$var定义模板变量，Componet里可以使用@VMVar</div>

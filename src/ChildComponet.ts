@@ -51,6 +51,7 @@ export class IncItemComponent extends Componet{
 
 @VMComponet({
     name:'childcmp',
+    include:[ChildItemComponent, ChildItem2Component, LoadItemComponent, IncItemComponent],
     tmpl:`<div>
     <div class="head1">父子属性通讯1</div>
     <div class="desc1">通过标签属性通讯</div>

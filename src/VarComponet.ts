@@ -1,4 +1,4 @@
-import { Componet, VMComponet, VMVar, Bind, VMBind, VMAttr, VMEvent } from 'cmpx';
+import { Componet, VMComponet, VMVar, Bind, VMBind, VMAttr, VMEvent, VMWatch } from 'cmpx';
 let  i=0;
 @VMBind({
     name:'testcolor'
@@ -21,11 +21,18 @@ export class RedBind extends Bind{
     @VMAttr('style.color')
     color:string;
 
-    onRead(){
-        console.log('onRead testcolor', this.iii, this.testcolor, this.color);
+    init = false;
+
+    onChanged(){
+        console.log('onChanged testcolor', this.iii, this.testcolor, this.color);
         this.color = this.testcolor;
         //this.style = 'color:' + this.testcolor;
-        super.onRead();
+        super.onChanged();
+    }
+
+    @VMWatch('this.testcolor', 'this.init')
+    change(){
+        console.log('watch', arguments);
     }
 
     iii = (++i);

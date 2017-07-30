@@ -1,10 +1,32 @@
-import { Componet, VMComponet } from 'cmpx';
+import { Componet, VMComponet, Filter, VMFilter, CmpxLib } from 'cmpx';
 
+@VMFilter({
+    name:'text',
+    alway:false
+})
+class TextFilter extends Filter{
+    onFilter(value:any, p:any, cb:any){
+        cb(CmpxLib.encodeHtml(value));
+    }
+}
+
+@VMFilter({
+    name:'add',
+    alway:false
+})
+class AddFilter extends Filter{
+    onFilter(value:any, p:any, cb:any){
+        console.log('add', value);
+        setTimeout(function(){
+            cb(value+' | '+ p);
+        }, 1000);
+    }
+}
 
 @VMComponet({
     name:'bind-test',
     tmpl:`<div>
-    <div class="head1">只读绑定!!!{{{: ': {{表达式}}' }}}</div>
+    <div class="head1">只读绑定{{{: ': {{表达式}}' }}}</div>
     <div class="desc1">绑定内容，View只能读取内容，不能写入</div>
     <div class="toolbar1">
         <button click="{{@this.changeText()}}">刷新数据</button>
@@ -99,15 +121,26 @@ class TestChild extends Componet{
     </div>
     <br />
 
+    <div class="head1">过滤器 {{{: ': {{表达式}}' }}}</div>
+    <div class="desc1">绑定内容，View只能读取内容，不能写入</div>
+    <div class="toolbar1">
+        <button click="{{@this.changeText()}}">刷新数据</button>
+    </div>
+    <div class="content1">{{this.text | text | add:this.tick()}}</div>
+
     <!--处理子组件-->
     <bind-test text="{{#this.text}}" />
 </div>`,
-    include:[TestChild]
+    include:[TestChild, TextFilter, AddFilter]
 })
 export default class BindDemoComponet extends Componet{
 
     constructor(){
         super();
+    }
+
+    tick(){
+        return new Date().valueOf();
     }
 
 

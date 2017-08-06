@@ -22,9 +22,9 @@ export class ChildItem2Component extends Componet{
     text:string = 'text';
     ev:CmpxEvent = new CmpxEvent();
 
-    onUpdate(cb){
+    onChanged(){
         this.ev.trigger([this.text]);
-        super.onUpdate(cb);
+        super.onChanged();
     }
 }
 
@@ -96,11 +96,10 @@ export class IncItemComponent extends Componet{
 })
 export default class ChildComponet extends Componet{
     text:string = 'a';
-    onReady(cb){
+    onReady(){
         setTimeout(()=>{
             this.childitem1 && this.childitem1.setText('111111')
         }, 2000);
-        super.onReady(cb);
     }
 
     @VMVar()

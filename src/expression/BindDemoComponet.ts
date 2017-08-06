@@ -56,19 +56,25 @@ class TestChild extends Componet{
         this.$update();
     }
 
-    onInit(cb){
-        console.log('onInit');
-        super.onInit(cb);
+    onInit(){
+        console.log('onInit TestChild');
+        super.onInit();
     }
 
-    onReady(cb){
-        console.log('onReady');
-        super.onReady(cb);
+    onReady(){
+        console.log('onReady TestChild');
+        super.onReady();
     }
 
-    onUpdate(cb){
+    onChanged() {
+        console.log('onChanged TestChild');
+        super.onChanged();
+    }
+
+
+    onUpdate(){
         console.log('onUpdate');
-        super.onUpdate(cb);
+        super.onUpdate();
     }
 
     onDispose(){
@@ -150,9 +156,9 @@ export default class BindDemoComponet extends Componet{
         this.$update();
     }
 
-    onUpdate(cb){
-        console.log('onUpdate binddemo');
-        super.onUpdate(cb);
+    onChanged(){
+        console.log('onChanged binddemo');
+        super.onChanged();
     }
 
 }

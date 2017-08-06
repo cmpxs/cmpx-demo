@@ -63,7 +63,7 @@ export class ViewvarChildComponet extends Componet{
     text:string = 'text';
     color = 'black'
 
-    onInit(cb){
+    onInit(){
         setTimeout(()=>{
             this.color = 'blue';
             this.$update();
@@ -72,7 +72,7 @@ export class ViewvarChildComponet extends Componet{
             this.color = 'yellow';
             this.$update();
         }, 10000);
-        super.onInit(cb);
+        super.onInit();
     }
 
     randomText(){

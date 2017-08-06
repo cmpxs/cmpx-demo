@@ -15,7 +15,7 @@ export declare class RedBind extends Bind {
 export declare class ViewvarChildComponet extends Componet {
     text: string;
     color: string;
-    onInit(cb: any): void;
+    onInit(): void;
     randomText(): void;
 }
 export default class ViewvarComponent extends Componet {

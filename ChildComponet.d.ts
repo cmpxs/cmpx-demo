@@ -6,7 +6,7 @@ export declare class ChildItemComponent extends Componet {
 export declare class ChildItem2Component extends Componet {
     text: string;
     ev: CmpxEvent;
-    onUpdate(cb: any): void;
+    onChanged(): void;
 }
 export declare class LoadItemComponent extends Componet {
     text: string;
@@ -16,6 +16,6 @@ export declare class IncItemComponent extends Componet {
 }
 export default class ChildComponet extends Componet {
     text: string;
-    onReady(cb: any): void;
+    onReady(): void;
     childitem1: ChildItemComponent;
 }

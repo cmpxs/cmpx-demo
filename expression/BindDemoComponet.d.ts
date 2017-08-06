@@ -4,5 +4,5 @@ export default class BindDemoComponet extends Componet {
     tick(): number;
     text: string;
     changeText(): void;
-    onUpdate(cb: any): void;
+    onChanged(): void;
 }
